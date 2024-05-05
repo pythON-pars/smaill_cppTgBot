@@ -3,17 +3,19 @@
 #include <iostream>
 #include <string>
 #include <SQLiteCpp/SQLiteCpp.h>
-#include "include/config.h"
+#include "../inc/config.hpp"
 
 #define DEBUG
 #define BOT
 
+using namespace TgBot;
+
 #ifdef BOT
 void on_startBot()
 {
-    std::string API_TOKEN = "API_TOKEN";
-    TgBot::Bot bot(API_TOKEN);
-
+    conf date;
+    TgBot::Bot bot(date.API_TOKEN);
+    
     TgBot::ReplyKeyboardMarkup button;
     TgBot::KeyboardButton keybut;
     

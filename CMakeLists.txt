@@ -7,11 +7,15 @@ set(CMAKE_BUILD_TYPE "Release")
 # Настройка параметров следования стандарту языка C++ 
 set(CMAKE_CXX_STANDARD 17)
 
+set(HEADER ${CMAKE_HOME_DIRECTORY}/inc/config.cpp inc/config.cpp)
+
 # Рабочее название
 set(APP "main")
 
 # Основные параметры проекта
 project(${APP} VERSION 0.1 LANGUAGES CXX)
+
+add_library(config STATIC ${HEADER})
 
 # Настройка параметров компилятора
 add_compile_options(-c -O2 -Wall -Wextra -Werror -pedantic)
@@ -31,17 +35,14 @@ target_link_libraries(${APP}
   SQLiteCpp
   sqlite3
   dl
+  config
 )
-
-include_directories("./inc")
 
 # Директории с подключаемыми файлами
 target_include_directories(${APP}
   PUBLIC
     /usr/local/include/tgbot
     /usr/local/include/SQLiteCp
-  # PRIVATE
-  #   smaill_cppTgBot/inc
 )
 
 # Определение, какие файлы используются при сборке цели
